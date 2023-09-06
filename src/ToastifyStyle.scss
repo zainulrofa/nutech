@@ -1,0 +1,29 @@
+/* ToastifyStyles.scss atau ToastifyStyles.css */
+
+/* Gaya dasar untuk Toastify */
+.Toastify__toast-container {
+    width: 320px;
+    z-index: 9999;
+  }
+  
+  .Toastify__toast {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  /* Gaya untuk pesan sukses */
+  .Toastify__toast--success {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  /* Gaya untuk pesan kesalahan */
+  .Toastify__toast--error {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  

@@ -1,0 +1,56 @@
+@import "../../common/color.scss";
+
+.header {
+    background-color: $secondary-color;
+    height: 72px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    h4 {
+        color: $font-primary;
+    }
+}
+
+.menu {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 20px;
+
+      li {
+        position: relative;
+
+        &:not(:last-child)::after {
+          content: '';
+          position: absolute;
+          right: -10px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 2px;
+          height: 10px;
+          background-color: #fff;
+        }
+
+        a {
+          text-decoration: none;
+          color: $font-primary;
+          font-weight: 700;
+          padding-right: 10px; /* Ruang tambahan di sebelah kanan teks */
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }

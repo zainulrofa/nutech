@@ -1,0 +1,109 @@
+@import "../../common/color.scss";
+
+.regist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.registForm {
+    text-align: center;
+    margin: 0 auto;
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        h4 {
+            color: $font-primary;
+        }
+    }
+    .title {
+        text-align: center;
+        margin: 24px 10rem;
+        color: $font-primary;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+  
+      input {
+        width: 100%;
+        padding: 10px 40px 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+  
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+  
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+  
+        &:hover {
+          opacity: .9;
+          transition: .6s;
+        }
+      }
+  
+    }
+    .text {
+        color: $font-primary;
+        font-size: 16px;
+        font-weight: 500;
+        a {
+            color: $primary-color;
+            font-weight: 700;
+        }
+    }
+  }
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+  
+    .icon {
+      position: absolute;
+      top: 40%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: grey; // Gunakan warna awal untuk ikon
+      transition: color 0.3s; // Efek transisi warna
+    }
+  
+    input {
+      padding-left: 30px;
+    }
+  
+    &.input-filled {
+      .icon {
+        color: $primary-color; // Saat form diisi, ganti warna ikon
+      }
+    }
+
+    .password-toggle {
+        position: absolute;
+        top: 40%;
+        left: 85%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: $primary-color;
+      }
+  }
+  
+  
