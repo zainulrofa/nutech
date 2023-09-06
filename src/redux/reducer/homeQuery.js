@@ -45,7 +45,8 @@ export const homeQuery = createApi({
             }),
             transformResponse: (response) => ({
                 data: response.data
-            })
+            }),
+            providesTags: [{ type: "Home", id: "Balance" }],
         }),
     })
 })
