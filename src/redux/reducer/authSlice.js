@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   error: null,
   isSuccess: false,
+  isError: false
 };
 
 export const authSlice = createSlice({
@@ -26,6 +27,8 @@ export const authSlice = createSlice({
         ...state,
         error: payload,
         isLoading: false,
+        isError: true,
+        isSuccess: false
       }))
       .addCase(loginAction.fulfilled, (state, { payload }) => {
         const token = payload.data.token;
@@ -34,6 +37,7 @@ export const authSlice = createSlice({
           token: token,
           isLoading: false,
           isSuccess: true,
+          isError: false
         };
       });
   },

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
   FaEnvelope,
@@ -14,6 +14,8 @@ import { loginAction } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
+  const state = useSelector((state) => state.auth)
+  console.log("error", state)
   const [showPassword, setShowPassword] = useState(false);
   const [body, setBody] = useState({});
   const dispatch = useDispatch();
@@ -40,6 +42,16 @@ const RegistrationForm = () => {
       dispatch(loginAction(body))
       toast.success("Login Berhasil")
       navigate("/home")
+      // if (state.isSuccess) {
+      //   dispatch(loginAction(body))
+      //   toast.success("Login Berhasil")
+      //   navigate("/home")
+      //   return
+      // }
+      // if (state.isError) {
+      //   toast.error(`${state.error.message}`)
+      //   return
+      // }
     },[body, dispatch, navigate]
   )
 

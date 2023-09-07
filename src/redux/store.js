@@ -1,25 +1,12 @@
-import {
-  combineReducers,
-  configureStore
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import authSlice from "./reducer/authSlice";
 import persistStore from "redux-persist/es/persistStore";
-import {
-  persistReducer
-} from "redux-persist";
-import {
-  authQuery
-} from "./reducer/authQuery";
-import {
-  homeQuery
-} from "./reducer/homeQuery";
-import {
-  transactionQuery
-} from "./reducer/transactionQuery";
-import {
-  profileQuery
-} from "./reducer/profileQuery";
+import { persistReducer } from "redux-persist";
+import { authQuery } from "./reducer/authQuery";
+import { homeQuery } from "./reducer/homeQuery";
+import { transactionQuery } from "./reducer/transactionQuery";
+import { profileQuery } from "./reducer/profileQuery";
 const persistConfig = {
   storage,
   key: "root",
@@ -38,12 +25,12 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false
+      serializableCheck: false,
     })
-    .concat(authQuery.middleware)
-    .concat(homeQuery.middleware)
-    .concat(transactionQuery.middleware)
-    .concat(profileQuery.middleware)
+      .concat(authQuery.middleware)
+      .concat(homeQuery.middleware)
+      .concat(transactionQuery.middleware)
+      .concat(profileQuery.middleware),
 });
 
 export const persistor = persistStore(store);

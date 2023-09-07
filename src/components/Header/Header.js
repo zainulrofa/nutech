@@ -21,6 +21,9 @@ const Header = () => {
           <NavLink to="/Transaction" activeClassname="active">Transaction</NavLink>
           </li>
           <li>
+          <NavLink to="/History" activeClassname="active">History</NavLink>
+          </li>
+          <li>
           <NavLink to="/Profile" activeClassname="active">Akun</NavLink>
           </li>
         </ul>

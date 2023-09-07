@@ -33,7 +33,7 @@ function Topup() {
           setSelectedAmount(parseInt(e.target.value))
       // console.log("yuhu", typeof selectedAmount);
     },
-    [selectedAmount]
+    []
   );
 
   const handleSubmit = useCallback(

@@ -15,6 +15,15 @@ export const transactionQuery = createApi({
       }),
       invalidatesTags: [{ type: "Home", id: "Balance" }],
     }),
+    transaction: builder.mutation({
+      query: ({ token, data }) => ({
+        url: "/transaction",
+        method: "POST",
+        data,
+        accessToken: token,
+      }),
+      invalidatesTags: [{ type: "Home", id: "Balance" }],
+    }),
     getHistory: builder.query({
       query: ({ token, offset, limit }) => ({
         url: "/transaction/history",
@@ -30,4 +39,4 @@ export const transactionQuery = createApi({
   }),
 });
 
-export const { useTopupMutation, useGetHistoryQuery } = transactionQuery;
+export const { useTopupMutation, useTransactionMutation, useGetHistoryQuery } = transactionQuery;
