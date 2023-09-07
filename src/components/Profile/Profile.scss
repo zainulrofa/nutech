@@ -46,51 +46,84 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 600px;
+    margin-top: 40px;
   
     .form-group {
       display: flex;
       flex-direction: column;
       margin-bottom: 15px;
+      width: 100%;
   
       label {
         font-weight: bold;
+        color: $font-primary;
+        margin: 10px 0;
       }
   
       .form-icon {
         display: flex;
         align-items: center;
   
-        i.icon {
-          margin-right: 10px;
-        }
-  
         input {
-          padding: 5px;
+          position: relative;
+          padding: 10px 0 10px 40px;
           border: 1px solid #ccc;
           border-radius: 5px;
+          width: 100%;
+          font-weight: 700;
+          font-size: 14px;
+        }
+        .icons {
+            position: absolute;
+            left: 28%;
+            color: $font-primary;
         }
       }
     }
   
     .form-buttons {
-      margin-top: 20px;
+      margin: 10px 0 50px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       button {
         padding: 10px 20px;
         margin: 5px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        &:hover {
+            opacity: .8;
+            transition: .8s;
+        }
       }
-  
+      .edit-image-form {
+        display: flex;
+        flex-direction: column;
+        .save-button {
+            background-color: #0aa370;
+            font-weight: 700;
+            color: $secondary-color;
+        }
+        .cancel-button {
+            margin: 20px 0;
+            background-color: #e9414f;
+            color: $secondary-color;
+            font-weight: 700;
+          }
+      }
       .edit-button {
-        background-color: #007bff;
-        color: #fff;
+        background-color: $secondary-color;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        font-weight: 700;
       }
-  
       .logout-button {
-        background-color: #dc3545;
-        color: #fff;
+        margin-top: 20px;
+        background-color: $primary-color;
+        color: $secondary-color;
+        font-weight: 700;
       }
     }
   }

@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaPenAlt } from "react-icons/fa";
+import { FaPenAlt, FaUserAlt } from "react-icons/fa";
+import { IoAtCircleOutline } from "react-icons/io5";
 import "./Profile.scss";
 import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 import { useGetProfileQuery } from "../../redux/reducer/homeQuery";
 import { useSelector } from "react-redux";
-import { useEditImageMutation } from "../../redux/reducer/profileQuery";
+import {
+  useEditImageMutation,
+  useEditProfileMutation,
+} from "../../redux/reducer/profileQuery";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { token } = useSelector((state) => state.auth);
@@ -13,13 +18,15 @@ const Profile = () => {
   const { data: users, refetch } = useGetProfileQuery(token);
   const [selectedImage, setSelectedImage] = useState(users?.data.profile_image);
   const [file, setFile] = useState("");
+  const [body, setBody] = useState({});
+  const [isEdit, setIsEdit] = useState(true);
   const [isEditingImage, setIsEditingImage] = useState(false);
-  const [editImage, { isSuccess, error, isError }] =
-    useEditImageMutation(token);
+  const [editImage, { isSuccess }] = useEditImageMutation(token);
+  const [editProfile, { isSuccess: isSuccesEditPofile, error, isError }] =
+    useEditProfileMutation(token);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Proses penyimpanan data profil di sini
+  const handleIsEdit = () => {
+    setIsEdit(false);
   };
 
   const handleImageChange = (e) => {
@@ -35,6 +42,13 @@ const Profile = () => {
     }
   };
 
+  const handleInputChange = useCallback(
+    (e) => {
+      setBody({ ...body, [e.target.name]: e.target.value });
+    },
+    [body]
+  );
+
   const handleSaveImage = useCallback(
     (e) => {
       e.preventDefault(e);
@@ -46,11 +60,25 @@ const Profile = () => {
     [editImage, file, token]
   );
 
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const data = body;
+      editProfile({ data, token });
+      setIsEdit(true);
+      if (isSuccesEditPofile) {
+        toast.success("Perubahan Tersimpan");
+        return;
+      }
+    },
+    [body, editProfile, token]
+  );
+
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || isSuccesEditPofile) {
       refetch();
     }
-  }, [isSuccess, refetch]);
+  }, [isSuccess, refetch, isSuccesEditPofile]);
   return (
     <div>
       <Header />
@@ -81,43 +109,90 @@ const Profile = () => {
             <h2>{`${users?.data ? users?.data?.first_name : ""} ${
               users?.data ? users?.data?.last_name : ""
             }`}</h2>
-            {/* Gantilah 'Nama Profil' dengan nama profil yang sebenarnya */}
           </div>
         </div>
         <form className="profile-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email:</label>
             <div className="form-icon">
-              <input type="email" name="email" required />
+              <input
+                type="email"
+                name="email"
+                placeholder={
+                  !isEdit ? "masukan email anda" : users?.data?.email
+                }
+                onChange={handleInputChange}
+                disabled={isEdit}
+              />
+              <IoAtCircleOutline className="icons" />
             </div>
           </div>
           <div className="form-group">
             <label>Nama Depan:</label>
             <div className="form-icon">
-              <input type="text" name="firstName" required />
+              <input
+                type="text"
+                name="first_name"
+                placeholder={!isEdit ? "Nama Depan" : users?.data?.first_name}
+                onChange={handleInputChange}
+                disabled={isEdit}
+              />
+              <FaUserAlt className="icons" />
             </div>
           </div>
           <div className="form-group">
             <label>Nama Belakang:</label>
             <div className="form-icon">
-              <input type="text" name="lastName" required />
+              <input
+                type="text"
+                name="last_name"
+                placeholder={!isEdit ? "Nama Belakang" : users?.data?.last_name}
+                onChange={handleInputChange}
+                disabled={isEdit}
+              />
+              <FaUserAlt className="icons" />
             </div>
           </div>
           <div className="form-buttons">
             {isEditingImage && (
               <div className="edit-image-form">
                 {selectedImage && (
-                  <button onClick={handleSaveImage}>Simpan Gambar</button>
+                  <button className="save-button" onClick={handleSaveImage}>
+                    Simpan Gambar
+                  </button>
                 )}
-                <button onClick={() => setIsEditingImage(false)}>Batal</button>
+                <button
+                  className="cancel-button"
+                  onClick={() => setIsEditingImage(false)}
+                >
+                  Batal
+                </button>
               </div>
             )}
-            <button type="submit" className="edit-button">
-              Edit Profil
-            </button>
-            <button type="button" className="logout-button">
-              Logout
-            </button>
+
+            {!isEdit && (
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="logout-button"
+              >
+                Simpan
+              </button>
+            )}
+            {isEdit && (
+              <div className="form-buttons">
+                <button
+                  type="submit"
+                  onClick={handleIsEdit}
+                  className="edit-button"
+                >
+                  Edit Profil
+                </button>
+                <button type="button" className="logout-button">
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </form>
       </div>
