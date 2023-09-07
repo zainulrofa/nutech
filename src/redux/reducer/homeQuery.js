@@ -15,7 +15,8 @@ export const homeQuery = createApi({
             }),
             transformResponse: (response) => ({
                 data: response.data
-            })
+            }),
+            providesTags: [{ type: "Home", id: "Profile" }],
         }),
         getServices: builder.query({
             query: (token) => ({

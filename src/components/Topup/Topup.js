@@ -31,7 +31,7 @@ function Topup() {
               return
           }
           setSelectedAmount(parseInt(e.target.value))
-      console.log("yuhu", typeof selectedAmount);
+      // console.log("yuhu", typeof selectedAmount);
     },
     [selectedAmount]
   );

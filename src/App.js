@@ -9,6 +9,7 @@ import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
 import Topup from "./components/Topup/Topup"
 import History from "./components/History/History"
+import Profile from "./components/Profile/Profile"
 import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { PersistGate } from "redux-persist/integration/react";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/Home" element={<Home />} />
             <Route path="/Topup" element={<Topup />} />
             <Route path="/Transaction" element={<History />} />
+            <Route path="/Profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </PersistGate>

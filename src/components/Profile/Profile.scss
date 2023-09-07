@@ -1,0 +1,97 @@
+@import "../../common/color.scss";
+
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .profile-sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-image {
+    position: relative;
+    img {
+      width: 120px;
+      aspect-ratio: 1;
+      border-radius: 100%;
+    }
+  }
+  
+  .edit-icon {
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    width: 30px;
+    aspect-ratio: 1;
+    background-color: $secondary-color;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 5px 0 1px 6px;
+    .icon {
+        width: 15px;
+    }
+  }
+  
+  .profile-name {
+    margin-top: 10px;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+  
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+  
+      label {
+        font-weight: bold;
+      }
+  
+      .form-icon {
+        display: flex;
+        align-items: center;
+  
+        i.icon {
+          margin-right: 10px;
+        }
+  
+        input {
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+      }
+    }
+  
+    .form-buttons {
+      margin-top: 20px;
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      .edit-button {
+        background-color: #007bff;
+        color: #fff;
+      }
+  
+      .logout-button {
+        background-color: #dc3545;
+        color: #fff;
+      }
+    }
+  }
+  
