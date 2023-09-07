@@ -36,50 +36,19 @@ const RegistrationForm = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (!email || !first_name || !last_name || !password || !confirmPassword) {
-  //     dispatch(setError("Semua field harus diisi."));
-  //     toast.error("Semua field harus diisi");
-  //     return;
-  //   }
-
-  //   if (password !== confirmPassword) { // Memeriksa apakah password dan konfirmasi password tidak sama
-  //     dispatch(setError("Password dan konfirmasi password tidak cocok."));
-  //     toast.error("Password dan konfirmasi password tidak cocok");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://take-home-test-api.nutech-integrasi.app/registration",
-  //       { email, first_name, last_name, password }
-  //     );
-
-  //     toast.success("Registrasi berhasil.");
-  //     console.log("Registrasi berhasil:", response.data);
-  //     window.location.href = '/';
-      
-  //   } catch (err) {
-  //     dispatch(setError("Registrasi gagal. Coba lagi nanti."));
-  //     toast.error(`${err.response.data.message}`);
-  //     console.error("Registrasi error:", err);
-  //   }
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = body
     console.log("data=>",data.email)
-    // if (!data.email || !data.password || !data.first_name || !data.last_name || !data.confirmPassword) {
-    //   toast.error("isiii")
-    //   return
-    // }
+    if (!data.email || !data.password || !data.first_name || !data.last_name || !data.confirmPassword) {
+      toast.error("Mohon Lengkapi Data")
+      return
+    }
     
-    // if (data.password !== data.confirmPassword) {
-    //   toast.error("Password dan konfirmasi password tidak cocok");
-    //   return;
-    // }
+    if (data.password !== data.confirmPassword) {
+      toast.error("Password dan konfirmasi password tidak cocok");
+      return;
+    }
     delete data.confirmPassword
     register(data)
   }

@@ -40,7 +40,7 @@ const RegistrationForm = () => {
       dispatch(loginAction(body))
       toast.success("Login Berhasil")
       navigate("/home")
-    },[body, dispatch]
+    },[body, dispatch, navigate]
   )
 
   return (
