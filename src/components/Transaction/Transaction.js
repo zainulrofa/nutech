@@ -10,10 +10,11 @@ import { formatRupiah } from "../../features/formatter";
 import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 import {
-  useTopupMutation,
   useTransactionMutation,
 } from "../../redux/reducer/transactionQuery";
 import { toast } from "react-toastify";
+import ProtectedLayout from "../ProtectedLayout";
+
 
 function Transaction() {
   const { token } = useSelector((state) => state.auth);
@@ -59,7 +60,7 @@ function Transaction() {
   }, [isSuccessTopup, refetch]);
 
   return (
-    <div>
+    <ProtectedLayout>
       <Header />
       <div className="topup">
         <div className="profile-section">
@@ -119,7 +120,7 @@ function Transaction() {
           </div>
         </div>
       </div>
-    </div>
+    </ProtectedLayout>
   );
 }
 

@@ -5,14 +5,20 @@ import "./Profile.scss";
 import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 import { useGetProfileQuery } from "../../redux/reducer/homeQuery";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   useEditImageMutation,
   useEditProfileMutation,
 } from "../../redux/reducer/profileQuery";
+import { logout } from "../../redux/reducer/authSlice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ProtectedLayout from "../ProtectedLayout";
+
 
 const Profile = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { token } = useSelector((state) => state.auth);
   const refTarget = useRef(null);
   const { data: users, refetch } = useGetProfileQuery(token);
@@ -71,8 +77,14 @@ const Profile = () => {
         return;
       }
     },
-    [body, editProfile, token]
+    [body, editProfile, token, isSuccesEditPofile]
   );
+
+  const handleLogout = useCallback(
+    () => { 
+      dispatch(logout())
+      navigate("/")
+    },[dispatch, navigate])
 
   useEffect(() => {
     if (isSuccess || isSuccesEditPofile) {
@@ -80,7 +92,7 @@ const Profile = () => {
     }
   }, [isSuccess, refetch, isSuccesEditPofile]);
   return (
-    <div>
+    <ProtectedLayout>
       <Header />
       <div className="edit-profile-container">
         <div className="profile-sections">
@@ -188,7 +200,7 @@ const Profile = () => {
                 >
                   Edit Profil
                 </button>
-                <button type="button" className="logout-button">
+                <button type="button" onClick={handleLogout} className="logout-button">
                   Logout
                 </button>
               </div>
@@ -196,7 +208,7 @@ const Profile = () => {
           </div>
         </form>
       </div>
-    </div>
+    </ProtectedLayout>
   );
 };
 

@@ -10,18 +10,20 @@ import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 import { useTopupMutation } from "../../redux/reducer/transactionQuery";
 import { toast } from "react-toastify";
+import ProtectedLayout from "../ProtectedLayout";
+
 
 function Topup() {
   const { token } = useSelector((state) => state.auth);
   const { data: users } = useGetProfileQuery(token);
   const { data: balance, refetch } = useGetBalanceQuery(token);
-  const [topup, { isSuccess:isSuccessTopup, error, isError }] = useTopupMutation(token);
+  const [topup, { isSuccess:isSuccessTopup }] = useTopupMutation(token);
 
-  const [selectedAmount, setSelectedAmount] = useState(""); // State untuk jumlah yang dipilih
+  const [selectedAmount, setSelectedAmount] = useState(""); 
 
   const handleOptionClick = (amount) => {
       setSelectedAmount(amount);
-      console.log("yuhu", selectedAmount);
+      // console.log("yuhu", selectedAmount);
   };
 
   const handleInputChange = useCallback(
@@ -53,7 +55,7 @@ function Topup() {
     },[isSuccessTopup, refetch])
 
   return (
-    <div>
+    <ProtectedLayout>
       <Header />
       <div className="topup">
         <div className="profile-section">
@@ -102,7 +104,7 @@ function Topup() {
           </div>
         </div>
       </div>
-    </div>
+    </ProtectedLayout>
   );
 }
 

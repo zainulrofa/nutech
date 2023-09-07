@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -40,8 +40,6 @@ const RegistrationForm = () => {
           return;
       }
       dispatch(loginAction(body))
-      toast.success("Login Berhasil")
-      navigate("/home")
       // if (state.isSuccess) {
       //   dispatch(loginAction(body))
       //   toast.success("Login Berhasil")
@@ -49,11 +47,22 @@ const RegistrationForm = () => {
       //   return
       // }
       // if (state.isError) {
-      //   toast.error(`${state.error.message}`)
+      //   toast.error(`${state?.error?.message}`)
       //   return
       // }
-    },[body, dispatch, navigate]
+    },[body, dispatch ]
   )
+
+  useEffect(() => {
+    if (state.isSuccess) {
+      toast.success("Login Berhasil")
+      navigate("/home")
+    }
+    else if (state.isError) {
+      toast.error(state?.error?.message)
+    }
+  },[navigate, state.isSuccess, state.isError, state?.error?.message])
+  
 
   return (
     <div className="regist">
