@@ -5,7 +5,7 @@ import {
   useGetBalanceQuery,
   useGetProfileQuery,
 } from "../../redux/reducer/homeQuery";
-import { formatRupiah } from "../../features/formatterRupiah";
+import { formatRupiah } from "../../features/formatter";
 import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 import { useTopupMutation } from "../../redux/reducer/transactionQuery";
@@ -17,7 +17,7 @@ function Topup() {
   const { data: balance, refetch } = useGetBalanceQuery(token);
   const [topup, { isSuccess:isSuccessTopup, error, isError }] = useTopupMutation(token);
 
-  const [selectedAmount, setSelectedAmount] = useState(0); // State untuk jumlah yang dipilih
+  const [selectedAmount, setSelectedAmount] = useState(""); // State untuk jumlah yang dipilih
 
   const handleOptionClick = (amount) => {
       setSelectedAmount(amount);

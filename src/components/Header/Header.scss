@@ -29,7 +29,9 @@
 
       li {
         position: relative;
-
+        .active {
+          color: $primary-color;
+        }
         &:not(:last-child)::after {
           content: '';
           position: absolute;

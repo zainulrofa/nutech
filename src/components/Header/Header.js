@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/Logo.png";
 import "./Header.scss";
 
 const Header = () => {
   return (
     <div className="header">
-      <Link to="/">
+      <Link to="/home">
         <div className="logo">
           <img src={logo} alt="logo" />
           <h4>SIMS PPOB-ZAIN</h4>
@@ -15,13 +15,13 @@ const Header = () => {
       <nav className="menu">
         <ul>
           <li>
-            <Link to="/Topup">Top Up</Link>
+            <NavLink to="/Topup" activeClassname="active">Top Up</NavLink>
           </li>
           <li>
-            <Link to="/transaction">Transaction</Link>
+          <NavLink to="/Transaction" activeClassname="active">Transaction</NavLink>
           </li>
           <li>
-            <Link to="/account">Akun</Link>
+          <NavLink to="/Profile" activeClassname="active">Akun</NavLink>
           </li>
         </ul>
       </nav>

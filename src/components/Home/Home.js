@@ -7,7 +7,7 @@ import {
   useGetProfileQuery,
   useGetServicesQuery,
 } from "../../redux/reducer/homeQuery";
-import { formatRupiah } from "../../features/formatterRupiah";
+import { formatRupiah } from "../../features/formatter";
 import Header from "../Header/Header";
 import defaultProfile from "../../images/Profile Photo.png";
 
