@@ -13,6 +13,11 @@
     }
   
     .profile-left {
+      img {
+        width: 70px;
+        aspect-ratio: 1;
+        border-radius: 100%;
+      }
       p {
         margin-top: 12px;
         font-weight: 500;

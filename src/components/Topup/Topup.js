@@ -58,7 +58,7 @@ function Topup() {
       <div className="topup">
         <div className="profile-section">
           <div className="profile-left">
-            <img src={defaultProfile} alt="Profile" />
+            <img src={users?.data?.profile_image ? `${users?.data?.profile_image}` : defaultProfile} alt="Profile" />
             <p>Selamat Datang, </p>
             <h3>{`${users?.data ? users?.data?.first_name : ""} ${
               users?.data ? users?.data?.last_name : ""

@@ -17,7 +17,7 @@ function HomePage() {
   const { data: services } = useGetServicesQuery(token);
   const { data: banner } = useGetBannerQuery(token);
   const { data: balance } = useGetBalanceQuery(token);
-  console.log(balance);
+  console.log(users?.data?.profile_image);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function HomePage() {
       <div className="homepage">
         <div className="profile-section">
           <div className="profile-left">
-            <img src={defaultProfile} alt="Profile" />
+            <img src={users?.data?.profile_image ? `${users?.data?.profile_image}` : defaultProfile} alt="Profile" />
             <p>Selamat Datang, </p>
             <h3>{`${users?.data ? users?.data?.first_name : ""} ${
               users?.data ? users?.data?.last_name : ""
